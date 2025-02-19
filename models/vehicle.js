@@ -6,6 +6,9 @@ const vehicleSchema = new mongoose.Schema({
   image: { type: String, required: true },
   desc: { type: String, required: true },
   brand: { type: String, required: true }
+}, 
+{
+    timestamps: true
 });
 
 module.exports = mongoose.model("Vehicle", vehicleSchema);
