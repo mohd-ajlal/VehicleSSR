@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehicle Details</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <%- include("partials/navbar") %>
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-header">
+        <h1 class="card-title text-center"><%= vehicle.vehicleName %></h1>
+      </div>
+      <div class="card-body">
+        <img src="<%= vehicle.image %>" class="img-fluid mb-3" alt="<%= vehicle.vehicleName %>">
+        <p class="card-text"><strong>Price:</strong> $<%= vehicle.price %></p>
+        <p class="card-text"><strong>Brand:</strong> <%= vehicle.brand %></p>
+        <p class="card-text"><strong>Description:</strong> <%= vehicle.desc %></p>
+        <div class="d-flex justify-content-between">
+          <a href="/vehicles/<%= vehicle._id %>/edit" class="btn btn-primary">Edit</a>
+          <form action="/vehicles/<%= vehicle._id %>?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Vehicle</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <%- include("partials/navbar") %>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Edit Vehicle</h1>
+    <form action="/vehicles/<%= vehicle._id %>?_method=PUT" method="POST" class="needs-validation" novalidate>
+      <div class="form-group">
+        <label for="vehicleName">Vehicle Name (Cannot be changed):</label>
+        <input type="text" id="vehicleName" name="vehicleName" class="form-control" value="<%= vehicle.vehicleName %>" readonly>
+      </div>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" class="form-control" value="<%= vehicle.price %>" required>
+        <div class="invalid-feedback">Please provide a valid price.</div>
+      </div>
+      <div class="form-group">
+        <label for="image">Image URL:</label>
+        <input type="text" id="image" name="image" class="form-control" value="<%= vehicle.image %>" required>
+        <div class="invalid-feedback">Please provide a valid image URL.</div>
+      </div>
+      <div class="form-group">
+        <label for="desc">Description:</label>
+        <textarea id="desc" name="desc" class="form-control" rows="3" required><%= vehicle.desc %></textarea>
+        <div class="invalid-feedback">Please provide a description.</div>
+      </div>
+      <div class="form-group">
+        <label for="brand">Brand:</label>
+        <input type="text" id="brand" name="brand" class="form-control" value="<%= vehicle.brand %>" required>
+        <div class="invalid-feedback">Please provide a brand.</div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Update</button>
+    </form>
+  </div>
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
+</body>
+</html>

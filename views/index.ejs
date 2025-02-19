@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Vehicles</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <%- include("partials/navbar") %>
+  <div class="container">
+    <h1 class="text-center my-4">All Vehicles</h1>
+    <div class="row">
+      <% vehicles.forEach(vehicle => { %>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="<%= vehicle.image %>" class="card-img-top" alt="<%= vehicle.vehicleName %>">
+            <div class="card-body">
+              <h5 class="card-title"><a href="/vehicles/<%= vehicle._id %>"><%= vehicle.vehicleName %></a></h5>
+              <p class="card-text">Price: $<%= vehicle.price %></p>
+              <p class="card-text">Brand: <%= vehicle.brand %></p>
+              <p class="card-text">Description: <%= vehicle.desc %></p>
+              <a href="/vehicles/<%= vehicle._id %>/edit" class="btn btn-primary">Edit</a>
+              <form action="/vehicles/<%= vehicle._id %>?_method=DELETE" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+</body>
+</html>
